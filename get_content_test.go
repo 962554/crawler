@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-var testCases = []struct {
+var tests = []struct {
 	name     string
 	input    string
 	htmlTag  string
@@ -70,23 +70,23 @@ var testCases = []struct {
 func TestGetContent(t *testing.T) {
 	t.Parallel()
 
-	for _, tc := range testCases {
+	for _, tt := range tests {
 		var got string
 
-		t.Run(tc.name, func(t *testing.T) {
+		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			switch tc.htmlTag {
+			switch tt.htmlTag {
 			case "h1":
 				fallthrough
 			case "h2":
-				got = getHeadingFromHTML(tc.input)
+				got = getHeadingFromHTML(tt.input)
 			case "p":
-				got = getFirstParagraphFromHTML(tc.input)
+				got = getFirstParagraphFromHTML(tt.input)
 			}
 
-			if got != tc.expected {
-				t.Errorf("got %q, want %q", got, tc.expected)
+			if got != tt.expected {
+				t.Errorf("got %q, want %q", got, tt.expected)
 			}
 		})
 	}
