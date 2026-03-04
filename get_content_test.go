@@ -11,13 +11,13 @@ var tests = []struct {
 	expected string
 }{
 	{
-		name:     "GetHeadingFromHTMLBasic",
+		name:     "h1",
 		input:    "<html><body><h1>Test Title</h1></body></html>",
 		htmlTag:  "h1",
 		expected: "Test Title",
 	},
 	{
-		name: "GetParagraphFromHTMLMainProperty",
+		name: "p from main",
 		input: `<html><body>
 		<p>Outside paragraph.</p>
 		<main>
@@ -28,7 +28,7 @@ var tests = []struct {
 		expected: "Main paragraph.",
 	},
 	{
-		name: "GetParagraphFromHTMLParagraph",
+		name: "p without main",
 		input: `<html><body>
 		<p>Outside paragraph.</p>
 	</body></html>`,
@@ -36,31 +36,31 @@ var tests = []struct {
 		expected: "Outside paragraph.",
 	},
 	{
-		name:     "NoParagraph",
+		name:     "no p",
 		input:    "<html><body><h1>Test Title</h1></body></html>",
 		htmlTag:  "p",
 		expected: "",
 	},
 	{
-		name:     "NoHeading",
+		name:     "no h1 or h2",
 		input:    "<html><body></body></html>",
 		htmlTag:  "h1",
 		expected: "",
 	},
 	{
-		name:     "NoBodyGetParagraph",
+		name:     "no body, get p",
 		input:    "",
 		htmlTag:  "p",
 		expected: "",
 	},
 	{
-		name:     "NoBodyGetHeading",
+		name:     "no body, get h1, h2",
 		input:    "",
 		htmlTag:  "h1",
 		expected: "",
 	},
 	{
-		name:     "NoH1GetH2",
+		name:     "get h2, no h1",
 		input:    "<html><body><h2>Test Title</h2></body></html>",
 		htmlTag:  "h2",
 		expected: "Test Title",
