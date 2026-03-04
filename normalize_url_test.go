@@ -38,19 +38,19 @@ func TestNormalizeURL(t *testing.T) {
 		// add more test cases here
 	}
 
-	for i, tc := range tests {
-		t.Run(tc.name, func(t *testing.T) {
+	for i, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			actual, err := normalizeURL(tc.inputURL)
+			actual, err := normalizeURL(tt.inputURL)
 			if err != nil {
-				t.Errorf("Test %v - '%s' FAIL: unexpected error: %v", i, tc.name, err)
+				t.Errorf("Test %v - '%s' FAIL: unexpected error: %v", i, tt.name, err)
 
 				return
 			}
 
-			if actual != tc.expected {
-				t.Errorf("Test %v - %s FAIL: expected URL: %v, actual: %v", i, tc.name, tc.expected, actual)
+			if actual != tt.expected {
+				t.Errorf("Test %v - %s FAIL: expected URL: %v, actual: %v", i, tt.name, tt.expected, actual)
 			}
 		})
 	}
