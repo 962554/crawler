@@ -4,14 +4,12 @@ import (
 	"testing"
 )
 
-type hp struct {
+var testCases = []struct {
 	name     string
 	input    string
 	htmlTag  string
 	expected string
-}
-
-var hps = []hp{
+}{
 	{
 		name:     "GetHeadingFromHTMLBasic",
 		input:    "<html><body><h1>Test Title</h1></body></html>",
@@ -72,7 +70,7 @@ var hps = []hp{
 func TestGetContent(t *testing.T) {
 	t.Parallel()
 
-	for _, tc := range hps {
+	for _, tc := range testCases {
 		var got string
 
 		t.Run(tc.name, func(t *testing.T) {
